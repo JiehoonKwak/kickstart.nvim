@@ -159,7 +159,10 @@ vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-
+-- jiehoonk's custom
+vim.keymap.set('n', '<leader>c', '<Plug>OSCYankOperator')
+vim.keymap.set('n', '<leader>cc', '<leader>c_', { remap = true })
+vim.keymap.set('v', '<leader>c', '<Plug>OSCYankVisual')
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -230,7 +233,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
+  'ojroques/vim-oscyank',
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
