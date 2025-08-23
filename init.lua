@@ -187,8 +187,7 @@ vim.cmd [[
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Additional keymaps from old config
--- Exit insert mode with jk
-vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit insert mode with jk' })
+-- Note: Exit insert mode mappings now handled by better-escape.nvim plugin
 
 -- Clear search highlights
 vim.keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
