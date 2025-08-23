@@ -128,8 +128,7 @@ return {
 - **Purpose**: Lag-free escape key mappings with smart timing detection
 - **Location**: `lua/custom/plugins/better-escape.lua`
 - **Escape Mappings**:
-  - `jj` - Escape to normal mode (primary choice)
-  - `jk` - Escape to normal mode (backup)
+  - `jk` - Escape to normal mode (primary choice)
   - `kj` - Escape to normal mode (alternative)
 - **Features**: 200ms timeout, works in insert/command/terminal modes, eliminates typing lag
 - **Module**: Uses `require('better_escape')` with underscore (not hyphen)

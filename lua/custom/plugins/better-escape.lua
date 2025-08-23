@@ -9,7 +9,6 @@ return {
         i = { -- Insert mode mappings
           j = {
             k = '<Esc>', -- jk -> Escape
-            j = '<Esc>', -- jj -> Escape (your preference!)
           },
           k = {
             j = '<Esc>', -- kj -> Escape (alternative)
@@ -18,7 +17,6 @@ return {
         c = { -- Command mode mappings  
           j = {
             k = '<Esc>',
-            j = '<Esc>',
           },
           k = {
             j = '<Esc>',
@@ -27,7 +25,6 @@ return {
         t = { -- Terminal mode mappings
           j = {
             k = '<C-\\><C-n>', -- jk in terminal mode
-            j = '<C-\\><C-n>', -- jj in terminal mode
           },
         },
       },
@@ -36,7 +33,6 @@ return {
     -- Add a user command to check the plugin status
     vim.api.nvim_create_user_command('BetterEscapeStatus', function()
       print('Better Escape mappings active:')
-      print('  jj -> Escape (insert/command mode)')
       print('  jk -> Escape (insert/command mode)')  
       print('  kj -> Escape (insert/command mode)')
       print('  Timeout: 200ms')
