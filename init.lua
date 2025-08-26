@@ -420,12 +420,21 @@ require('lazy').setup({
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            i = { 
+              ['<c-enter>'] = 'to_fuzzy_refine',
+              -- Single escape to close Telescope (fixes double-escape issue)
+              ['<esc>'] = require('telescope.actions').close,
+            },
+            n = {
+              -- Escape also works in normal mode  
+              ['<esc>'] = require('telescope.actions').close,
+              -- Keep q as well for consistency
+              ['q'] = require('telescope.actions').close,
+            },
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {

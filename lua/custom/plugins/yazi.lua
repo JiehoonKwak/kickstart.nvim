@@ -10,12 +10,7 @@ return {
       '<leader>y',
       mode = { 'n', 'v' },
       '<cmd>Yazi<cr>',
-      desc = 'Open yazi at the current file',
-    },
-    {
-      '<leader>cw',
-      '<cmd>Yazi cwd<cr>',
-      desc = 'Open yazi at the current working directory',
+      desc = 'Open yazi file manager',
     },
   },
   opts = {
@@ -34,6 +29,11 @@ return {
       copy_relative_path_to_selected_files = '<c-y>',
       send_to_quickfix_list = '<c-q>',
     },
+    
+    -- Custom function to set additional keymappings
+    set_keymappings_function = function(yazi_buffer_id, config, context)
+      vim.keymap.set('t', '<esc>', '<cmd>close<cr>', { buffer = yazi_buffer_id })
+    end,
     
     -- Change Neovim's working directory when yazi's directory changes
     change_neovim_cwd_on_close = true,

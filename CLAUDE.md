@@ -55,6 +55,12 @@ nvim --clean -u init.lua
 - Use lazy loading specifications for performance
 - Example: `render-markdown.lua` provides rich Markdown rendering with `<leader>mp` toggle
 
+### Escape Key Behavior
+- **Telescope**: Single `<Esc>` closes search interface (configured in `init.lua`)
+- **Yazi**: Both `q` and `<Esc>` exit file manager
+- **Insert Mode**: `jj`, `jk`, `kj` escape sequences work via better-escape plugin
+- **Better-escape**: Automatically disabled in Telescope and yazi to prevent conflicts
+
 ### Health Diagnostics
 - Run `:checkhealth kickstart` in Neovim for configuration validation
 - Health check implementation in `lua/kickstart/health.lua`
@@ -113,6 +119,51 @@ return {
 
 ## Custom Plugins Installed
 
+### alpha.nvim
+- **Purpose**: Neovim greeter/dashboard with custom ASCII art
+- **Location**: `lua/custom/plugins/alpha.lua`
+- **Features**: NEOVIM ASCII header, quick file/session access buttons
+- **Keybindings**: Space-based shortcuts matching Telescope commands
+
+### auto-session.nvim
+- **Purpose**: Automatic session management
+- **Location**: `lua/custom/plugins/auto-session.lua`
+- **Key Shortcuts**:
+  - `<leader>wr` - Restore session for current directory
+  - `<leader>ws` - Save session for current directory
+- **Features**: Auto session suppression for common directories, manual restore mode
+
+### better-escape.nvim
+- **Purpose**: Lag-free escape key mappings with smart timing detection
+- **Location**: `lua/custom/plugins/better-escape.lua`
+- **Escape Mappings**:
+  - `jj` - Escape to normal mode (primary choice)
+  - `jk` - Escape to normal mode (backup)
+  - `kj` - Escape to normal mode (alternative)
+- **Features**: 200ms timeout, works in insert/terminal modes, eliminates typing lag
+- **Disabled**: Automatically disabled in Telescope, yazi, alpha, and lazy interfaces for proper escape behavior
+- **Module**: Uses `require('better_escape')` with underscore (not hyphen)
+- **Command**: `:BetterEscapeStatus` - Show current mappings and settings
+
+### GitHub Copilot
+- **Purpose**: AI code completion and assistance
+- **Location**: `lua/custom/plugins/init.lua`
+- **Features**: GitHub Copilot integration, loads on InsertEnter event
+- **Plugin**: `github/copilot.vim`
+
+### lazygit.nvim
+- **Purpose**: Lazygit integration within Neovim
+- **Location**: `lua/custom/plugins/lazygit.lua`
+- **Key Shortcuts**:
+  - `<leader>lg` - Open LazyGit interface
+- **Commands**: LazyGit, LazyGitConfig, LazyGitCurrentFile, LazyGitFilter, LazyGitFilterCurrentFile
+
+### lualine.nvim
+- **Purpose**: Customizable statusline with theme integration
+- **Location**: `lua/custom/plugins/lualine.lua`
+- **Features**: Custom color theme, lazy.nvim update notifications, file info display
+- **Theme**: Custom blue/green/violet/yellow color scheme
+
 ### render-markdown.nvim
 - **Purpose**: Rich Markdown rendering with enhanced visual elements
 - **Location**: `lua/custom/plugins/render-markdown.lua`
@@ -124,13 +175,45 @@ return {
 - **Features**: Headings with icons, code blocks, tables, checkboxes, callouts, anti-conceal
 - **Auto-enabled**: Automatically activates for `.md` files
 
-### better-escape.nvim
-- **Purpose**: Lag-free escape key mappings with smart timing detection
-- **Location**: `lua/custom/plugins/better-escape.lua`
-- **Escape Mappings**:
-  - `jj` - Escape to normal mode (primary choice)
-  - `jk` - Escape to normal mode (backup)
-  - `kj` - Escape to normal mode (alternative)
-- **Features**: 200ms timeout, works in insert/command/terminal modes, eliminates typing lag
-- **Module**: Uses `require('better_escape')` with underscore (not hyphen)
-- **Command**: `:BetterEscapeStatus` - Show current mappings and settings
+### substitute.nvim
+- **Purpose**: Enhanced text substitution operations
+- **Location**: `lua/custom/plugins/substitute.lua`
+- **Key Shortcuts**:
+  - `s` - Substitute with motion
+  - `ss` - Substitute line
+  - `S` - Substitute to end of line
+  - `s` (visual) - Substitute in visual mode
+
+### unified.nvim
+- **Purpose**: Inline git diff viewer with navigation
+- **Location**: `lua/custom/plugins/init.lua`
+- **Key Shortcuts**:
+  - `<leader>gu` - Git unified diff view
+  - `<leader>gr` - Reset unified view
+  - `]h` - Next git hunk
+  - `[h` - Previous git hunk
+- **Features**: Inline diffs, file tree disabled, custom gutter signs
+
+### vim-maximizer
+- **Purpose**: Split window maximization/minimization
+- **Location**: `lua/custom/plugins/vim-maximizer.lua`
+- **Key Shortcuts**:
+  - `<leader>sm` - Toggle maximize/minimize split
+
+### vim-tmux-navigator
+- **Purpose**: Seamless navigation between Neovim and tmux panes
+- **Location**: `lua/custom/plugins/vim-tmux-navigator.lua`
+- **Key Shortcuts**:
+  - `<C-h>` - Navigate left
+  - `<C-j>` - Navigate down
+  - `<C-k>` - Navigate up
+  - `<C-l>` - Navigate right
+  - `<C-\>` - Navigate to previous
+
+### yazi.nvim
+- **Purpose**: Yazi file manager integration
+- **Location**: `lua/custom/plugins/yazi.lua`
+- **Key Shortcuts**:
+  - `<leader>y` - Open yazi file manager
+- **Features**: Directory sync, floating window, various file operations, quickfix integration
+- **Exit**: Use `q` or `<Esc>` to quit yazi
