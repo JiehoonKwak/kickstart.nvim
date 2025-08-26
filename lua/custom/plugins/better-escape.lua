@@ -3,27 +3,29 @@ return {
   event = 'InsertEnter', -- Only load when entering insert mode
   config = function()
     require('better_escape').setup {
-      timeout = 200, -- Time between key presses in milliseconds
-      default_mappings = true,
+      timeout = 100, -- Reduced timeout - must type faster (100ms)
+      default_mappings = false, -- Disable default mappings, use custom only
       -- Disable in specific filetypes that have their own escape handling
       disabled_filetypes = { 'TelescopePrompt', 'yazi', 'alpha', 'lazy' },
       -- Disable completely in floating windows
       disabled_patterns = { 'telescope', 'yazi' },
       mappings = {
-        i = { -- Insert mode mappings only (remove command mode to fix conflicts)
+        i = { -- Insert mode mappings only
           j = {
             k = '<Esc>', -- jk -> Escape
-            j = '<Esc>', -- jj -> Escape
+            -- Removed jj mapping
           },
           k = {
-            j = '<Esc>', -- kj -> Escape (alternative)
+            j = '<Esc>', -- kj -> Escape
           },
         },
-        -- Remove command mode mappings to prevent telescope conflicts
         t = { -- Terminal mode mappings
           j = {
             k = '<C-\\><C-n>', -- jk in terminal mode
-            j = '<C-\\><C-n>', -- jj in terminal mode
+            -- Removed jj mapping
+          },
+          k = {
+            j = '<C-\\><C-n>', -- kj in terminal mode
           },
         },
       },
@@ -41,10 +43,9 @@ return {
     -- Add a user command to check the plugin status
     vim.api.nvim_create_user_command('BetterEscapeStatus', function()
       print('Better Escape mappings active:')
-      print('  jj -> Escape (insert/command mode)')
-      print('  jk -> Escape (insert/command mode)')  
-      print('  kj -> Escape (insert/command mode)')
-      print('  Timeout: 200ms')
+      print('  jk -> Escape (insert/terminal mode)')  
+      print('  kj -> Escape (insert/terminal mode)')
+      print('  Timeout: 100ms (fast typing required)')
     end, { desc = 'Show Better Escape plugin status' })
   end,
 }
