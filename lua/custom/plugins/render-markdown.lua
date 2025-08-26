@@ -3,7 +3,7 @@ return {
   dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- mini.nvim for icons
   ft = { 'markdown' }, -- Only load for markdown files
   opts = {
-    -- Configure the plugin here
+    -- GitHub-style minimal configuration
     enabled = true,
     max_file_size = 5.0, -- MB
     debounce = 100,
@@ -15,27 +15,16 @@ return {
     },
     heading = {
       enabled = true,
-      sign = true,
-      position = 'overlay',
-      icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
-      signs = { '󰫎 ' },
-      width = 'full',
-      backgrounds = {
-        'RenderMarkdownH1Bg',
-        'RenderMarkdownH2Bg',
-        'RenderMarkdownH3Bg',
-        'RenderMarkdownH4Bg',
-        'RenderMarkdownH5Bg',
-        'RenderMarkdownH6Bg',
-      },
+      sign = false, -- Disable sign column icons
+      position = 'inline',
+      icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' }, -- Simple text markers
+      signs = {},
+      width = 'block', -- GitHub-like width
+      backgrounds = {}, -- No background highlights
       foregrounds = {
-        'RenderMarkdownH1',
-        'RenderMarkdownH2',
-        'RenderMarkdownH3',
-        'RenderMarkdownH4',
-        'RenderMarkdownH5',
-        'RenderMarkdownH6',
+        'Normal', 'Normal', 'Normal', 'Normal', 'Normal', 'Normal'
       },
+      border = false, -- No decorative borders
     },
     paragraph = {
       enabled = true,
@@ -44,84 +33,82 @@ return {
     },
     code = {
       enabled = true,
-      sign = true,
-      style = 'full',
+      sign = false,
+      style = 'normal', -- Minimal code block style
       position = 'left',
-      width = 'full',
-      highlight = 'RenderMarkdownCode',
-      border = 'thin',
+      width = 'block',
+      highlight = 'Normal', -- No special highlighting
+      border = 'none', -- No borders
+      above = '', -- No decorative chars above
+      below = '', -- No decorative chars below
+      disable_background = true, -- No code block backgrounds
     },
     dash = {
       enabled = true,
       icon = '─',
-      highlight = 'RenderMarkdownDash',
+      highlight = 'Comment',
     },
     bullet = {
       enabled = true,
-      icons = { '●', '○', '◆', '◇' },
-      highlight = 'RenderMarkdownBullet',
+      icons = { '•', '◦', '▸', '▹' }, -- Simple bullets
+      highlight = 'Normal',
     },
     checkbox = {
       enabled = true,
       unchecked = {
-        icon = '󰄱 ',
-        highlight = 'RenderMarkdownUnchecked',
+        icon = '☐ ', -- Simple checkbox
+        highlight = 'Normal',
       },
       checked = {
-        icon = '󰱒 ',
-        highlight = 'RenderMarkdownChecked',
+        icon = '☑ ', -- Simple checked box
+        highlight = 'Normal',
       },
       custom = {
-        todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo' },
+        todo = { raw = '[-]', rendered = '◯ ', highlight = 'Comment' },
       },
     },
     quote = {
       enabled = true,
-      icon = '▋',
-      highlight = 'RenderMarkdownQuote',
+      icon = '│', -- Simple vertical line
+      highlight = 'Comment',
     },
     pipe_table = {
       enabled = true,
-      style = 'full',
+      style = 'normal', -- Minimal table style
       cell = 'padded',
-      alignment_indicator = '━',
+      alignment_indicator = '─',
       border = {
-        '┌', '┬', '┐',
-        '├', '┼', '┤',
-        '└', '┴', '┘',
-        '│', '─',
+        '│', '─', '┌', '┐', '└', '┘', '├', '┤', '┬', '┴', '┼'
       },
-      head = 'RenderMarkdownTableHead',
-      row = 'RenderMarkdownTableRow',
-      filler = 'RenderMarkdownTableFill',
+      head = 'Normal',
+      row = 'Normal',
+      filler = 'Normal',
     },
     callout = {
-      note = { raw = '[!NOTE]', rendered = '󰋽 Note', highlight = 'RenderMarkdownInfo' },
-      tip = { raw = '[!TIP]', rendered = '󰌶 Tip', highlight = 'RenderMarkdownSuccess' },
-      important = { raw = '[!IMPORTANT]', rendered = '󰅾 Important', highlight = 'RenderMarkdownHint' },
-      warning = { raw = '[!WARNING]', rendered = '󰀪 Warning', highlight = 'RenderMarkdownWarn' },
-      caution = { raw = '[!CAUTION]', rendered = '󰳦 Caution', highlight = 'RenderMarkdownError' },
-      abstract = { raw = '[!ABSTRACT]', rendered = '󰨸 Abstract', highlight = 'RenderMarkdownInfo' },
-      todo = { raw = '[!TODO]', rendered = '󰗡 Todo', highlight = 'RenderMarkdownInfo' },
+      -- Simplified callouts without fancy icons
+      note = { raw = '[!NOTE]', rendered = 'Note', highlight = 'Comment' },
+      tip = { raw = '[!TIP]', rendered = 'Tip', highlight = 'Comment' },
+      important = { raw = '[!IMPORTANT]', rendered = 'Important', highlight = 'Comment' },
+      warning = { raw = '[!WARNING]', rendered = 'Warning', highlight = 'Comment' },
+      caution = { raw = '[!CAUTION]', rendered = 'Caution', highlight = 'Comment' },
     },
     link = {
       enabled = true,
-      image = '󰥶 ',
-      email = '󰀓 ',
-      hyperlink = '󰌹 ',
-      highlight = 'RenderMarkdownLink',
+      image = '', -- No image icon
+      email = '', -- No email icon
+      hyperlink = '', -- No hyperlink icon
+      highlight = 'Underlined',
       custom = {
-        web = { pattern = '^http[s]?://', icon = '󰖟 ', highlight = 'RenderMarkdownLink' },
+        web = { pattern = '^http[s]?://', icon = '', highlight = 'Underlined' },
       },
     },
     sign = {
-      enabled = true,
-      highlight = 'RenderMarkdownSign',
+      enabled = false, -- Disable all sign column elements
     },
     latex = {
       enabled = true,
       converter = 'latex2text',
-      highlight = 'RenderMarkdownMath',
+      highlight = 'Comment',
     },
   },
   keys = {
