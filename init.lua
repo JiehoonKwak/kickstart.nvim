@@ -893,6 +893,19 @@ require('lazy').setup({
       -- Load the colorscheme here.
       vim.cmd.colorscheme 'mellow'
 
+      -- Terminal transparency and background fixes
+      vim.cmd([[
+        hi Normal guibg=NONE ctermbg=NONE
+        hi NormalFloat guibg=NONE ctermbg=NONE
+        hi SignColumn guibg=NONE ctermbg=NONE
+        hi LineNr guibg=NONE ctermbg=NONE
+        hi CursorLineNr guibg=NONE ctermbg=NONE
+        hi StatusLine guibg=NONE ctermbg=NONE
+        hi StatusLineNC guibg=NONE ctermbg=NONE
+        hi VertSplit guibg=NONE ctermbg=NONE
+        hi WinSeparator guibg=NONE ctermbg=NONE
+      ]])
+
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
