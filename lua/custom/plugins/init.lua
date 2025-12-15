@@ -6,7 +6,13 @@ return {
   -- GitHub Copilot integration
   {
     'github/copilot.vim',
-    event = 'InsertEnter',
+    event = 'VimEnter',
+    config = function()
+      -- Enable copilot for specific filetypes
+      vim.g.copilot_filetypes = {
+        ['*'] = true,
+      }
+    end,
   },
   
   -- Inline git diff viewer
