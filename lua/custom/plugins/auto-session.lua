@@ -10,7 +10,8 @@ return {
 
     local keymap = vim.keymap
 
-    keymap.set('n', '<leader>wr', '<cmd>SessionRestore<CR>', { desc = 'Restore session for cwd' })
-    keymap.set('n', '<leader>ws', '<cmd>SessionSave<CR>', { desc = 'Save session for auto session root dir' })
+    keymap.set('n', '<leader>wr', '<cmd>Autosession search<CR>', { desc = 'Search sessions' })
+    keymap.set('n', '<leader>ws', '<cmd>Autosession save<CR>', { desc = 'Save session' })
+    keymap.set('n', '<leader>wl', '<cmd>Autosession restore<CR>', { desc = 'Restore last session' })
   end,
 }

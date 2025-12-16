@@ -23,7 +23,7 @@ return {
       dashboard.button('SPC sf', '󰱼 > Find File', '<cmd>Telescope find_files<CR>'),
       dashboard.button('SPC sg', '  > Find Word', '<cmd>Telescope live_grep<CR>'),
       dashboard.button('SPC s.', '󰋚  > Recent Files', '<cmd>Telescope oldfiles<CR>'),
-      dashboard.button('SPC wr', '󰁯  > Restore Session', '<cmd>SessionRestore<CR>'),
+      dashboard.button('SPC wr', '󰁯  > Search Sessions', '<cmd>Autosession search<CR>'),
       dashboard.button('q', ' > Quit NVIM', '<cmd>qa<CR>'),
     }
 
