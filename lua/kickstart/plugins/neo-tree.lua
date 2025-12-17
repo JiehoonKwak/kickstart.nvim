@@ -15,6 +15,12 @@ return {
   },
   opts = {
     filesystem = {
+      use_libuv_file_watcher = true, -- Auto-refresh when files change externally
+      filtered_items = {
+        visible = true,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',

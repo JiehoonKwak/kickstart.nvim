@@ -2,17 +2,10 @@
 -- Prefix: <leader>o (open with)
 
 return {
-  -- No external plugins needed, just keymaps
-  {
-    'folke/which-key.nvim',
-    opts = function(_, opts)
-      opts.spec = opts.spec or {}
-      table.insert(opts.spec, { '<leader>o', group = '[O]pen with' })
-    end,
-  },
   {
     dir = vim.fn.stdpath 'config',
     name = 'external-apps',
+    event = 'VeryLazy',
     config = function()
       local map = vim.keymap.set
 

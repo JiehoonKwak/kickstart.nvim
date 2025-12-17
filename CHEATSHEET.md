@@ -1,19 +1,175 @@
 # Neovim Cheatsheet (Leader = Space)
 
-## Files
-`<leader>sf` find files | `<leader>sg` grep all | `<leader>y` file manager | `<leader><leader>` buffers
+## File Explorer
+
+| Key | Action |
+|-----|--------|
+| `\` | Toggle Neo-tree (sidebar) |
+| `<leader>y` | Open Yazi (terminal file manager) |
+| `<leader>sf` | Search files (Telescope) |
+| `<leader>sg` | Search text in files (grep) |
+| `<leader>s.` | Recent files |
+| `<leader><leader>` | Find open buffers |
+
+### Creating Files/Folders
+**In Neo-tree (`\`):**
+- `a` - Create new file
+- `A` - Create new folder
+- `d` - Delete
+- `r` - Rename
+- `c` / `p` - Copy / Paste
+- `m` - Move
+
+**In Yazi (`<leader>y`):**
+- `a` - Create file
+- `Shift+A` - Create folder
+- `d` - Delete (to trash)
+- `r` - Rename
+- `y` / `p` - Yank / Paste
+
+## Buffers
+
+| Key | Action |
+|-----|--------|
+| `Shift+h` / `Shift+l` | Previous / Next buffer |
+| `<leader>bp` | Pin buffer |
+| `<leader>bx` | Pick buffer to close |
+| `<leader>bo` | Close other buffers |
 
 ## Git
-`<leader>lg` LazyGit | `<leader>hp` preview hunk | `<leader>hs` stage | `<leader>hr` reset | `]c/[c` next/prev change
 
-## Code
-`gd` definition | `gr` references | `K` hover | `<leader>ca` actions | `<leader>rn` rename | `<leader>f` format
+### In-buffer (gitsigns)
+| Key | Action |
+|-----|--------|
+| `]c` / `[c` | Jump to next/prev change |
+| `<leader>hp` | Preview hunk (see diff) |
+| `<leader>hs` | Stage hunk |
+| `<leader>hr` | Reset hunk |
+| `<leader>hS` | Stage entire buffer |
+| `<leader>hR` | Reset entire buffer |
+| `<leader>hb` | Blame current line |
+| `<leader>hd` | Diff against index |
+| `<leader>hD` | Diff against last commit |
+| `<leader>tb` | Toggle line blame |
+| `<leader>tD` | Toggle show deleted |
 
-## Splits
-`<leader>sv` vertical | `<leader>sh` horizontal | `<leader>sx` close | `Ctrl+hjkl` navigate
+### Full Git UI
+| Key | Action |
+|-----|--------|
+| `<leader>lg` | Open LazyGit |
+| `<leader>gu` | Unified diff view |
+| `]h` / `[h` | Navigate hunks (unified) |
 
-## Open With (외부 앱)
-`<leader>oc` VS Code | `<leader>or` Finder | `<leader>od` default app | `<leader>oo` Obsidian | `<leader>op` copy path
+## Code / LSP
 
-## Motions
-`ciw` change word | `ci"` change in quotes | `yap` yank paragraph | `dd` delete line | `jj` exit insert
+| Key | Action |
+|-----|--------|
+| `gd` | Go to definition |
+| `gr` | Find references |
+| `gI` | Go to implementation |
+| `gD` | Go to declaration |
+| `K` | Hover documentation |
+| `<leader>ca` | Code actions |
+| `<leader>rn` | Rename symbol |
+| `<leader>ds` | Document symbols |
+| `<leader>ws` | Workspace symbols |
+| `<leader>D` | Type definition |
+| `<leader>f` | Format buffer |
+
+## Navigation / Jump
+
+| Key | Action |
+|-----|--------|
+| `s` | Flash jump (type chars to jump) |
+| `S` | Flash treesitter select |
+| `<leader>u` | Undo tree |
+| `Ctrl+o` / `Ctrl+i` | Jump back / forward |
+
+## Terminal
+
+| Key | Action |
+|-----|--------|
+| `` Ctrl+` `` | Toggle terminal |
+| `<leader>tt` | Float terminal |
+| `<leader>th` | Horizontal terminal |
+| `<leader>tv` | Vertical terminal |
+| `Esc Esc` | Exit terminal mode |
+
+## Diagnostics (Trouble)
+
+| Key | Action |
+|-----|--------|
+| `<leader>xx` | All diagnostics |
+| `<leader>xX` | Buffer diagnostics |
+| `<leader>xs` | Document symbols |
+| `<leader>xq` | Quickfix list |
+
+## Splits / Windows
+
+| Key | Action |
+|-----|--------|
+| `<leader>sv` | Split vertical |
+| `<leader>sh` | Split horizontal |
+| `<leader>se` | Make splits equal |
+| `<leader>sx` | Close split |
+| `<leader>sm` | Maximize/restore split |
+| `Ctrl+h/j/k/l` | Navigate splits |
+
+## Open With External Apps
+
+| Key | Action |
+|-----|--------|
+| `<leader>od` | Open with default app |
+| `<leader>oc` | Open in VS Code |
+| `<leader>or` | Reveal in Finder |
+| `<leader>oo` | Open in Obsidian |
+| `<leader>ot` | Open Ghostty here |
+| `<leader>op` | Copy file path |
+
+## Session
+
+| Key | Action |
+|-----|--------|
+| `<leader>wr` | Restore session |
+| `<leader>ws` | Save session |
+
+## Markdown
+
+| Key | Action |
+|-----|--------|
+| `<leader>mv` | Preview in floating window (glow) |
+| `<leader>mp` | Toggle inline rendering |
+| `<leader>me` | Enable inline rendering |
+| `<leader>md` | Disable inline rendering |
+
+## Tabs
+
+| Key | Action |
+|-----|--------|
+| `<leader>to` | New tab |
+| `<leader>tx` | Close tab |
+| `<leader>tn` / `<leader>tp` | Next / Prev tab |
+
+## Other
+
+| Key | Action |
+|-----|--------|
+| `<leader>nh` | Clear search highlights |
+| `<leader>tw` | Toggle line wrap |
+| `<leader>th` | Toggle inlay hints |
+| `gcc` | Toggle comment (line) |
+| `gc` | Toggle comment (motion) |
+| `jj` / `jk` / `kj` | Escape to normal mode |
+
+## VS Code to Neovim Quick Reference
+
+| VS Code | Neovim |
+|---------|--------|
+| Cmd+P | `<leader>sf` |
+| Cmd+Shift+F | `<leader>sg` |
+| Cmd+K V (md preview) | `<leader>mv` |
+| File tree | `\` or `<leader>y` |
+| New file | `a` in Neo-tree/Yazi |
+| Git panel | `<leader>lg` |
+| View changes | `<leader>hp` |
+| Preview file | `<leader>od` |
