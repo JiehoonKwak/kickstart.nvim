@@ -5,7 +5,7 @@
 | Key | Action |
 |-----|--------|
 | `\` | Toggle Neo-tree (sidebar) |
-| `<leader>y` | Open Yazi (terminal file manager) |
+| `<leader>e` | Explore with Yazi (file manager) |
 | `<leader>sf` | Search files (Telescope) |
 | `<leader>sg` | Search text in files (grep) |
 | `<leader>s.` | Recent files |
@@ -20,7 +20,7 @@
 - `c` / `p` - Copy / Paste
 - `m` - Move
 
-**In Yazi (`<leader>y`):**
+**In Yazi (`<leader>e`):**
 - `a` - Create file
 - `Shift+A` - Create folder
 - `d` - Delete (to trash)
@@ -115,16 +115,26 @@
 | `<leader>sm` | Maximize/restore split |
 | `Ctrl+h/j/k/l` | Navigate splits |
 
+## Yank Path
+
+| Key | Action |
+|-----|--------|
+| `<leader>yp` | Yank absolute path |
+| `<leader>yr` | Yank relative path |
+| `<leader>yf` | Yank filename (with ext) |
+| `<leader>yn` | Yank name (no ext) |
+| `<leader>yd` | Yank directory path |
+
 ## Open With External Apps
 
 | Key | Action |
 |-----|--------|
-| `<leader>od` | Open with default app |
+| `<leader>oa` | Open in Antigravity |
 | `<leader>oc` | Open in VS Code |
-| `<leader>or` | Reveal in Finder |
+| `<leader>od` | Open with default app |
 | `<leader>oo` | Open in Obsidian |
+| `<leader>or` | Reveal in Finder |
 | `<leader>ot` | Open Ghostty here |
-| `<leader>op` | Copy file path |
 
 ## Session
 
@@ -168,8 +178,10 @@
 | Cmd+P | `<leader>sf` |
 | Cmd+Shift+F | `<leader>sg` |
 | Cmd+K V (md preview) | `<leader>mv` |
-| File tree | `\` or `<leader>y` |
+| File tree | `\` or `<leader>e` |
 | New file | `a` in Neo-tree/Yazi |
 | Git panel | `<leader>lg` |
 | View changes | `<leader>hp` |
 | Preview file | `<leader>od` |
+| Copy path | `<leader>yp` |
+| Copy relative path | `<leader>yr` |

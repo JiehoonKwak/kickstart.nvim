@@ -7,10 +7,10 @@ return {
   },
   keys = {
     {
-      '<leader>y',
+      '<leader>e',
       mode = { 'n', 'v' },
       '<cmd>Yazi<cr>',
-      desc = 'Open yazi file manager',
+      desc = 'Explore with Yazi',
     },
   },
   opts = {
