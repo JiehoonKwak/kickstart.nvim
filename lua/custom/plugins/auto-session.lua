@@ -15,6 +15,15 @@ return {
         theme_conf = { border = true },
         previewer = false,
       },
+      -- Re-apply fold settings after session restore (sessions save old foldmethod)
+      post_restore_cmds = {
+        function()
+          vim.opt.foldmethod = 'expr'
+          vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          vim.opt.foldlevel = 99
+          vim.opt.foldenable = true
+        end,
+      },
     })
 
     local keymap = vim.keymap

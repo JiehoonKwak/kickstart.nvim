@@ -1,5 +1,5 @@
--- Custom utility keymaps (yank paths + external apps)
--- Prefixes: <leader>y (yank), <leader>o (open with)
+-- Custom utility keymaps (copy paths + external apps)
+-- Prefixes: <leader>c (copy), <leader>o (open with)
 
 return {
   {
@@ -16,28 +16,28 @@ return {
       end
 
       -- ═══════════════════════════════════════════════════════════════
-      -- Yank path utilities (<leader>y)
+      -- Copy path utilities (<leader>c) - mirrors yazi's c* bindings
       -- ═══════════════════════════════════════════════════════════════
 
-      map('n', '<leader>yp', function()
+      map('n', '<leader>cc', function()
         yank_and_notify(vim.fn.expand '%:p', 'absolute path')
-      end, { desc = 'Yank absolute path' })
+      end, { desc = 'Copy path' })
 
-      map('n', '<leader>yr', function()
+      map('n', '<leader>cr', function()
         yank_and_notify(vim.fn.expand '%:.', 'relative path')
-      end, { desc = 'Yank relative path' })
+      end, { desc = 'Copy relative path' })
 
-      map('n', '<leader>yf', function()
+      map('n', '<leader>cf', function()
         yank_and_notify(vim.fn.expand '%:t', 'filename')
-      end, { desc = 'Yank filename' })
+      end, { desc = 'Copy filename' })
 
-      map('n', '<leader>yn', function()
+      map('n', '<leader>cn', function()
         yank_and_notify(vim.fn.expand '%:t:r', 'name')
-      end, { desc = 'Yank name (no ext)' })
+      end, { desc = 'Copy name (no ext)' })
 
-      map('n', '<leader>yd', function()
+      map('n', '<leader>cd', function()
         yank_and_notify(vim.fn.expand '%:p:h', 'directory')
-      end, { desc = 'Yank directory path' })
+      end, { desc = 'Copy directory' })
 
       -- ═══════════════════════════════════════════════════════════════
       -- External app integrations (<leader>o)

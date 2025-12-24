@@ -7,11 +7,12 @@ return {
       -- multiplexer_integration = 'zellij',
     })
 
-    -- Navigation between neovim splits AND zellij panes
-    vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left, { desc = 'Move to left split/pane' })
-    vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down, { desc = 'Move to bottom split/pane' })
-    vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up, { desc = 'Move to top split/pane' })
-    vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right, { desc = 'Move to right split/pane' })
+    -- Navigation between neovim splits AND zellij panes (Alt+hjkl)
+    -- NOTE: Requires Zellij config to unbind Alt+hjkl (see keybinds { shared { unbind ... } })
+    vim.keymap.set('n', '<A-h>', require('smart-splits').move_cursor_left, { desc = 'Move to left split/pane' })
+    vim.keymap.set('n', '<A-j>', require('smart-splits').move_cursor_down, { desc = 'Move to bottom split/pane' })
+    vim.keymap.set('n', '<A-k>', require('smart-splits').move_cursor_up, { desc = 'Move to top split/pane' })
+    vim.keymap.set('n', '<A-l>', require('smart-splits').move_cursor_right, { desc = 'Move to right split/pane' })
 
     -- Resize splits (optional but useful)
     vim.keymap.set('n', '<A-H>', require('smart-splits').resize_left, { desc = 'Resize split left' })

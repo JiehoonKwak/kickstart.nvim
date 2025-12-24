@@ -172,6 +172,21 @@ vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.backspace = 'indent,eol,start'
 
+-- Auto-reload files when changed externally
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
+  group = vim.api.nvim_create_augroup('auto-reload', { clear = true }),
+  command = 'if mode() != "c" | checktime | endif',
+  desc = 'Check for external file changes',
+})
+
+-- Folding with Treesitter
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+
 -- Set cursor shape to vertical line in insert mode
 vim.cmd [[
   let &t_SI = "\e[6 q"  " Insert mode: vertical bar
@@ -192,9 +207,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Clear search highlights
 vim.keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
 
--- Delete without yanking to clipboard (use black hole register)
-vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d', { desc = 'Delete without yanking' })
-vim.keymap.set('n', '<leader>dd', '"_dd', { desc = 'Delete line without yanking' })
+-- Delete without yanking: use "_ register directly (e.g., "_d, "_dd)
+-- Removed <leader>d mapping to avoid conflict with Document group
 
 -- Window split management
 vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window vertically' })
@@ -211,6 +225,25 @@ vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current bu
 
 -- Line wrap toggle
 vim.keymap.set('n', '<leader>tw', '<cmd>set wrap!<CR>', { desc = 'Toggle line wrap' })
+
+-- Move lines up and down (VS Code style)
+-- Alt+j/k (works outside Zellij)
+vim.keymap.set('n', '<A-j>', '<cmd>move .+1<CR>', { desc = 'Move line down' })
+vim.keymap.set('n', '<A-k>', '<cmd>move .-2<CR>', { desc = 'Move line up' })
+vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv", { desc = 'Move selection down' })
+vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv", { desc = 'Move selection up' })
+-- Ctrl+Shift+j/k (fallback for Zellij)
+vim.keymap.set('n', '<C-S-j>', '<cmd>move .+1<CR>', { desc = 'Move line down' })
+vim.keymap.set('n', '<C-S-k>', '<cmd>move .-2<CR>', { desc = 'Move line up' })
+vim.keymap.set('v', '<C-S-j>', ":move '>+1<CR>gv", { desc = 'Move selection down' })
+vim.keymap.set('v', '<C-S-k>', ":move '<-2<CR>gv", { desc = 'Move selection up' })
+
+-- Indent/unindent with Tab in visual mode (VS Code/Obsidian style)
+vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent selection' })
+vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Unindent selection' })
+
+-- Mouse drag auto-copy (for Ghostty copy-on-select compatibility)
+vim.keymap.set('v', '<LeftRelease>', 'ygv', { noremap = true, silent = true, desc = 'Copy on mouse release' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -359,7 +392,7 @@ require('lazy').setup({
       -- Document existing key chains
       spec = {
         { '<leader>b', group = '[B]uffer' },
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+        { '<leader>c', group = '[C]ode/Copy', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>g', group = '[G]it' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
@@ -371,7 +404,6 @@ require('lazy').setup({
         { '<leader>t', group = '[T]oggle/Terminal' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>x', group = 'Trouble/Diagnosti[x]' },
-        { '<leader>y', group = '[Y]ank path' },
       },
     },
   },
@@ -461,7 +493,7 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>s?', builtin.help_tags, { desc = '[S]earch Help [?]' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', function()
         builtin.find_files { hidden = true, follow = true }
@@ -472,6 +504,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sG', function()
+        builtin.live_grep { additional_args = { '--no-ignore' } }
+      end, { desc = '[S]earch by [G]rep (all)' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })

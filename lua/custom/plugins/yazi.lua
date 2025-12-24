@@ -7,10 +7,10 @@ return {
   },
   keys = {
     {
-      '<leader>e',
+      '<leader>y',
       mode = { 'n', 'v' },
       '<cmd>Yazi<cr>',
-      desc = 'Explore with Yazi',
+      desc = 'Yazi file manager',
     },
   },
   opts = {
@@ -36,7 +36,7 @@ return {
     end,
     
     -- Change Neovim's working directory when yazi's directory changes
-    change_neovim_cwd_on_close = true,
+    change_neovim_cwd_on_close = false,
     
     -- Floating window scaling factor (0.0 to 1.0)
     floating_window_scaling_factor = 0.9,

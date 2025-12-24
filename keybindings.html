@@ -351,6 +351,128 @@
   <main class="main">
     <div class="grid" id="grid">
 
+      <!-- Vim Essentials: Movement -->
+      <div class="card" data-category="navigation">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <span class="card-icon">󰁔</span>
+            Movement (Vim Essentials)
+          </div>
+          <span class="collapse-icon">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="keybinding"><div class="keys"><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd></div><div class="description">←↓↑→ basic movement</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>w</kbd></div><div class="description">Next word start</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>b</kbd></div><div class="description">Previous word start</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>e</kbd></div><div class="description">Word end</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>0</kbd></div><div class="description">Line start</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>$</kbd></div><div class="description">Line end</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>^</kbd></div><div class="description">First non-blank char</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>g</kbd><kbd>g</kbd></div><div class="description">File start</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>G</kbd></div><div class="description">File end</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>{</kbd></div><div class="description">Paragraph up</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>}</kbd></div><div class="description">Paragraph down</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>%</kbd></div><div class="description">Matching bracket</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>f</kbd><span class="key-separator">+</span><kbd>char</kbd></div><div class="description">Find char on line</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>t</kbd><span class="key-separator">+</span><kbd>char</kbd></div><div class="description">Till char on line</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>F</kbd><span class="key-separator">+</span><kbd>char</kbd></div><div class="description">Find char backward</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>;</kbd></div><div class="description">Repeat f/t forward</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>,</kbd></div><div class="description">Repeat f/t backward</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>*</kbd></div><div class="description">Search word forward</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>#</kbd></div><div class="description">Search word backward</div><span class="mode normal">N</span></div>
+        </div>
+      </div>
+
+      <!-- Vim Essentials: Operators -->
+      <div class="card" data-category="misc">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <span class="card-icon">󰏫</span>
+            Operators (Vim Essentials)
+          </div>
+          <span class="collapse-icon">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="keybinding"><div class="keys"><kbd>d</kbd><span class="key-separator">+</span><kbd>motion</kbd></div><div class="description">Delete (dw, d$, diw)</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>c</kbd><span class="key-separator">+</span><kbd>motion</kbd></div><div class="description">Change (cw, ci", ct:)</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>y</kbd><span class="key-separator">+</span><kbd>motion</kbd></div><div class="description">Yank (yw, yy, yi))</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>v</kbd><span class="key-separator">+</span><kbd>motion</kbd></div><div class="description">Visual select (vw, vi{)</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>></kbd><kbd>></kbd></div><div class="description">Indent line</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd><</kbd><kbd><</kbd></div><div class="description">Outdent line</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>g</kbd><kbd>u</kbd><span class="key-separator">+</span><kbd>motion</kbd></div><div class="description">Lowercase (guiw)</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>g</kbd><kbd>U</kbd><span class="key-separator">+</span><kbd>motion</kbd></div><div class="description">Uppercase (gUiw)</div><span class="mode operator">O</span></div>
+        </div>
+      </div>
+
+      <!-- Vim Essentials: Text Objects -->
+      <div class="card" data-category="misc">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <span class="card-icon">󰅪</span>
+            Text Objects (Vim Essentials)
+          </div>
+          <span class="collapse-icon">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="keybinding"><div class="keys"><kbd>i</kbd><kbd>w</kbd></div><div class="description">Inner word → ciw</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>a</kbd><kbd>w</kbd></div><div class="description">Around word → daw</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>i</kbd><kbd>"</kbd></div><div class="description">Inner double quotes → ci"</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>a</kbd><kbd>"</kbd></div><div class="description">Around double quotes → da"</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>i</kbd><kbd>'</kbd></div><div class="description">Inner single quotes → ci'</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>i</kbd><kbd>)</kbd></div><div class="description">Inner parens → yi)</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>a</kbd><kbd>)</kbd></div><div class="description">Around parens → da)</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>i</kbd><kbd>}</kbd></div><div class="description">Inner braces → ci{</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>i</kbd><kbd>]</kbd></div><div class="description">Inner brackets → di]</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>i</kbd><kbd>t</kbd></div><div class="description">Inner HTML tag → cit</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>i</kbd><kbd>p</kbd></div><div class="description">Inner paragraph → vip</div><span class="mode operator">O</span></div>
+          <div class="keybinding"><div class="keys"><kbd>a</kbd><kbd>p</kbd></div><div class="description">Around paragraph → dap</div><span class="mode operator">O</span></div>
+        </div>
+      </div>
+
+      <!-- Vim Essentials: Quick Actions -->
+      <div class="card" data-category="misc">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <span class="card-icon">󱐋</span>
+            Quick Actions (Vim Essentials)
+          </div>
+          <span class="collapse-icon">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="keybinding"><div class="keys"><kbd>x</kbd></div><div class="description">Delete char under cursor</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>r</kbd><span class="key-separator">+</span><kbd>char</kbd></div><div class="description">Replace char</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>~</kbd></div><div class="description">Toggle case</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>p</kbd></div><div class="description">Paste after cursor</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>P</kbd></div><div class="description">Paste before cursor</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>u</kbd></div><div class="description">Undo</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd class="modifier">Ctrl</kbd><kbd>r</kbd></div><div class="description">Redo</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>.</kbd></div><div class="description">Repeat last change</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>J</kbd></div><div class="description">Join lines</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>o</kbd></div><div class="description">New line below + insert</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>O</kbd></div><div class="description">New line above + insert</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>A</kbd></div><div class="description">Append at line end</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>I</kbd></div><div class="description">Insert at line start</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>=</kbd><kbd>=</kbd></div><div class="description">Auto-indent line</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>Z</kbd><kbd>Z</kbd></div><div class="description">Save and quit</div><span class="mode normal">N</span></div>
+        </div>
+      </div>
+
+      <!-- Vim Essentials: Surround -->
+      <div class="card" data-category="misc">
+        <div class="card-header" onclick="toggleCard(this)">
+          <div class="card-title">
+            <span class="card-icon">󰅲</span>
+            Surround (mini.surround)
+          </div>
+          <span class="collapse-icon">▼</span>
+        </div>
+        <div class="card-body">
+          <div class="keybinding"><div class="keys"><kbd>s</kbd><kbd>a</kbd><span class="key-separator">+</span><kbd>motion</kbd><span class="key-separator">+</span><kbd>char</kbd></div><div class="description">Surround add → saiw"</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>s</kbd><kbd>d</kbd><span class="key-separator">+</span><kbd>char</kbd></div><div class="description">Surround delete → sd"</div><span class="mode normal">N</span></div>
+          <div class="keybinding"><div class="keys"><kbd>s</kbd><kbd>r</kbd><span class="key-separator">+</span><kbd>old</kbd><span class="key-separator">+</span><kbd>new</kbd></div><div class="description">Surround replace → sr"'</div><span class="mode normal">N</span></div>
+        </div>
+      </div>
+
       <!-- Core Navigation & Search -->
       <div class="card" data-category="core">
         <div class="card-header" onclick="toggleCard(this)">
