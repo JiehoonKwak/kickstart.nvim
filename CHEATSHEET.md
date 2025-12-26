@@ -159,7 +159,7 @@ ggVG     # Select entire file
 | `<leader>rn` | Rename symbol        |
 | `<leader>ds` | Document symbols     |
 | `<leader>ws` | Workspace symbols    |
-| `<leader>D`  | Type definition      |
+| `gy`         | Goto type definition |
 | `<leader>f`  | Format buffer        |
 
 ## Navigation / Jump
@@ -177,7 +177,7 @@ ggVG     # Select entire file
 | ------------ | ------------------- |
 | `` Ctrl+` `` | Toggle terminal     |
 | `<leader>tt` | Float terminal      |
-| `<leader>th` | Horizontal terminal |
+| `<leader>t-` | Horizontal terminal |
 | `<leader>tv` | Vertical terminal   |
 | `Esc Esc`    | Exit terminal mode  |
 
@@ -194,10 +194,10 @@ ggVG     # Select entire file
 
 | Key            | Action                 |
 | -------------- | ---------------------- |
-| `<leader>sv`   | Split vertical         |
-| `<leader>sh`   | Split horizontal       |
-| `<leader>se`   | Make splits equal      |
-| `<leader>sx`   | Close split            |
+| `<leader>wv`   | Window split vertical  |
+| `<leader>wh`   | Window split horizontal|
+| `<leader>we`   | Window equalize splits |
+| `<leader>wx`   | Window close           |
 | `<leader>sm`   | Maximize/restore split |
 | `Ctrl+h/j/k/l` | Navigate splits        |
 
@@ -250,7 +250,7 @@ ggVG     # Select entire file
 
 | Key                | Action                  |
 | ------------------ | ----------------------- |
-| `<leader>nh`       | Clear search highlights |
+| `<Esc>`            | Clear search highlights |
 | `<leader>tw`       | Toggle line wrap        |
 | `<leader>th`       | Toggle inlay hints      |
 | `gcc`              | Toggle comment (line)   |

@@ -8,7 +8,7 @@ return {
     { '<leader>rr', function() require('spectre').open() end, desc = 'Search & Replace (project)' },
     { '<leader>rw', function() require('spectre').open_visual({ select_word = true }) end, desc = 'Replace word under cursor' },
     { '<leader>rw', function() require('spectre').open_visual() end, mode = 'v', desc = 'Replace selection' },
-    { '<leader>rf', function() require('spectre').open_file_search({ select_word = true }) end, desc = 'Replace in current file' },
+    { '<leader>rf', function() require('spectre').open_file_search() end, desc = 'Replace in current file' },
   },
   opts = {
     highlight = {

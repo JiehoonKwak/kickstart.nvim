@@ -175,14 +175,13 @@ return {
 - **Features**: Headings with icons, code blocks, tables, checkboxes, callouts, anti-conceal
 - **Auto-enabled**: Automatically activates for `.md` files
 
-### substitute.nvim
-- **Purpose**: Enhanced text substitution operations
-- **Location**: `lua/custom/plugins/substitute.lua`
+### flash.nvim
+- **Purpose**: Fast motion/jump plugin for navigating anywhere on screen
+- **Location**: `lua/custom/plugins/flash.lua`
 - **Key Shortcuts**:
-  - `s` - Substitute with motion
-  - `ss` - Substitute line
-  - `S` - Substitute to end of line
-  - `s` (visual) - Substitute in visual mode
+  - `s` - Flash jump (type chars to jump to any match)
+  - `S` - Flash treesitter (select treesitter nodes)
+- **Usage**: Press `s`, type 1-2 chars, then press the label to jump
 
 ### unified.nvim
 - **Purpose**: Inline git diff viewer with navigation

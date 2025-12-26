@@ -171,6 +171,7 @@ vim.opt.swapfile = false
 -- Other useful settings
 vim.opt.termguicolors = true
 vim.opt.backspace = 'indent,eol,start'
+vim.opt.cmdheight = 0 -- Hide command line when not in use
 
 -- Auto-reload files when changed externally
 vim.opt.autoread = true
@@ -203,18 +204,16 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Additional keymaps from old config
 -- Note: Exit insert mode mappings now handled by better-escape.nvim plugin
-
--- Clear search highlights
-vim.keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
+-- Note: <Esc> already clears search highlights (see line 203)
 
 -- Delete without yanking: use "_ register directly (e.g., "_d, "_dd)
 -- Removed <leader>d mapping to avoid conflict with Document group
 
--- Window split management
-vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split window vertically' })
-vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split window horizontally' })
-vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Make splits equal size' })
-vim.keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = 'Close current split' })
+-- Window split management (using <leader>w prefix to avoid conflict with Search)
+vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = '[W]indow split [V]ertical' })
+vim.keymap.set('n', '<leader>wh', '<C-w>s', { desc = '[W]indow split [H]orizontal' })
+vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = '[W]indow [E]qualize splits' })
+vim.keymap.set('n', '<leader>wx', '<cmd>close<CR>', { desc = '[W]indow close' })
 
 -- Tab management
 vim.keymap.set('n', '<leader>to', '<cmd>tabnew<CR>', { desc = 'Open new tab' })
@@ -226,13 +225,19 @@ vim.keymap.set('n', '<leader>tf', '<cmd>tabnew %<CR>', { desc = 'Open current bu
 -- Line wrap toggle
 vim.keymap.set('n', '<leader>tw', '<cmd>set wrap!<CR>', { desc = 'Toggle line wrap' })
 
--- Move lines up and down (VS Code style)
--- Alt+j/k (works outside Zellij)
-vim.keymap.set('n', '<A-j>', '<cmd>move .+1<CR>', { desc = 'Move line down' })
-vim.keymap.set('n', '<A-k>', '<cmd>move .-2<CR>', { desc = 'Move line up' })
-vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv", { desc = 'Move selection down' })
-vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv", { desc = 'Move selection up' })
--- Ctrl+Shift+j/k (fallback for Zellij)
+-- Git hunk fallback (shows message when gitsigns not attached)
+-- Actual <leader>h* keymaps are buffer-local, set by gitsigns on_attach
+vim.keymap.set('n', '<leader>h', function()
+  vim.notify('Git hunk commands require a git-tracked buffer with changes', vim.log.levels.WARN)
+end, { desc = 'Git [H]unk (needs git buffer)' })
+
+-- Open with external apps
+vim.keymap.set('n', '<leader>om', function()
+  vim.fn.system({ 'open', '-a', 'MarkEdit', vim.fn.expand('%:p') })
+end, { desc = 'Open in [M]arkEdit' })
+
+-- Move lines up and down (Ctrl+Shift+j/k)
+-- Note: Alt+hjkl reserved for split/pane navigation (smart-splits)
 vim.keymap.set('n', '<C-S-j>', '<cmd>move .+1<CR>', { desc = 'Move line down' })
 vim.keymap.set('n', '<C-S-k>', '<cmd>move .-2<CR>', { desc = 'Move line up' })
 vim.keymap.set('v', '<C-S-j>', ":move '>+1<CR>gv", { desc = 'Move selection down' })
@@ -283,6 +288,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
+})
+
+-- Auto-save on focus lost or buffer leave (VS Code-like behavior)
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertLeave' }, {
+  group = vim.api.nvim_create_augroup('auto-save', { clear = true }),
+  pattern = '*',
+  command = 'silent! wall',
+  desc = 'Auto-save all buffers',
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -402,7 +415,7 @@ require('lazy').setup({
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle/Terminal' },
-        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>w', group = '[W]indow/Workspace' },
         { '<leader>x', group = 'Trouble/Diagnosti[x]' },
       },
     },
@@ -503,9 +516,11 @@ require('lazy').setup({
       end, { desc = '[S]earch [F]iles (all)' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sg', function()
+        builtin.live_grep { additional_args = { '--hidden' } }
+      end, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sG', function()
-        builtin.live_grep { additional_args = { '--no-ignore' } }
+        builtin.live_grep { additional_args = { '--hidden', '--no-ignore' } }
       end, { desc = '[S]earch by [G]rep (all)' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
@@ -625,7 +640,7 @@ require('lazy').setup({
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          map('gy', require('telescope.builtin').lsp_type_definitions, '[G]oto T[y]pe Definition')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
